@@ -17,9 +17,9 @@ app.get("/", (req, res) => {
   res.send(`Welcome to Twilio Message Service`);
 });
 
-app.get("/send-sms", (req, res) => {
+app.post("/send-sms", (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const { recipient } = req.query;
+  const { recipient } = req.body;
   try {
     client.messages
       .create({
