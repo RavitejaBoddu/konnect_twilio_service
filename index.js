@@ -10,27 +10,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const accountSid = "ACc578cc0a5eb1e28718a3c9f67d9a5153";
-const authToken = "ceae4ebda4243559000748d74c371034";
+const authToken = "2319b2150eb49810e5610c868f21e715";
 const client = require("twilio")(accountSid, authToken);
 
 app.get("/", (req, res) => {
   res.send(`Welcome to Twilio Message Service`);
 });
 
-app.post("/send-sms", (req, res) => {
-  const { recipient } = req.body;
+app.get("/send-sms", (req, res) => {
+  const { recipient } = req.query;
   try {
     client.messages
       .create({
-        body: "Welcome to Konnect we are happy to have you onboard, Explore and always stay konnectedwith your friedns.",
+        body: "Hello Konnect Users, This is a test Message.",
         messagingServiceSid: "MG77cab241bb6ecc8a9b9b3f5bde325d73",
         to: recipient,
       })
-      .then((message) => {
+      .then((message) =>{
         console.log(message);
-        console.log(" Phone Number:" + recipient);
-        res.send(`Message Successfully sent`);
-      })
+        console.log(" Phone Number:" + recipient)
+        res.send(message);
+  })
       .done();
   } catch (error) {
     res.send(error);
