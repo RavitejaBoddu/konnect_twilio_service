@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || '5000';
-// var cors = require("cors");
+var cors = require("cors");
 const bodyParser = require("body-parser");
 app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors());
+app.use(cors());
 
 const accountSid = "ACc578cc0a5eb1e28718a3c9f67d9a5153";
 const authToken = "ceae4ebda4243559000748d74c371034";
@@ -18,7 +18,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send-sms", (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   const { recipient } = req.body;
   try {
     client.messages
@@ -39,7 +38,6 @@ app.post("/send-sms", (req, res) => {
 });
 
 app.post("/send-otp", async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber } = req.body;
   try {
@@ -59,7 +57,6 @@ app.post("/send-otp", async (req, res) => {
 });
 
 app.post("/verify-otp", async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber, otp } = req.body;
   try {
@@ -76,7 +73,6 @@ app.post("/verify-otp", async (req, res) => {
 });
 
 app.post("/add-user", async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber } = req.body;
   try {
