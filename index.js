@@ -1,10 +1,6 @@
 const express = require("express");
 const app = express();
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-app.listen(port);
+const port = 8000;
 var cors = require("cors");
 const bodyParser = require("body-parser");
 
