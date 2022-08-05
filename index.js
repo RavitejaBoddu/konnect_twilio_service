@@ -74,26 +74,6 @@ app.post("/verify-otp", async (req, res) => {
   res.json({ error, status });
 });
 
-// app.get("/add-user", async (req, res) => {
-//   let response;
-//   const { phoneNumber } = req.query;
-//   try {
-//     client.validationRequests
-//       .create({
-//         friendlyName: "My Home Phone Number",
-//         phoneNumber: phoneNumber,
-//       })
-//       .then((validation_request) => {
-//         console.log(validation_request);
-//         console.log(validation_request.friendlyName);
-//         response =validation_request;
-//       });
-//       res.send(response);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 app.post('/add-user', async (req, res) => {
   let status, error;
   const {phoneNumber} = req.body;
