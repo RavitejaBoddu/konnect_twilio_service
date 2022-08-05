@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+const port = process.env.PORT || '5000';
 var cors = require("cors");
 const bodyParser = require("body-parser");
+app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -91,4 +92,4 @@ app.post("/add-user", async (req, res) => {
   res.json({ error, status });
 });
 
-app.listen(port, () => console.log(`its alive on http://localhost:${port}`));
+app.listen(port, () => console.log(`Server started on Port ${port}`));
