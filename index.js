@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/send-sms", (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   const { recipient } = req.query;
   try {
     client.messages
@@ -38,6 +39,7 @@ app.get("/send-sms", (req, res) => {
 });
 
 app.post("/send-otp", async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber } = req.body;
   try {
@@ -57,6 +59,7 @@ app.post("/send-otp", async (req, res) => {
 });
 
 app.post("/verify-otp", async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber, otp } = req.body;
   try {
@@ -73,6 +76,7 @@ app.post("/verify-otp", async (req, res) => {
 });
 
 app.post("/add-user", async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   let status, error;
   const { phoneNumber } = req.body;
   try {
