@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || '5000';
+const port = process.env.PORT || "5000";
 var cors = require("cors");
 const bodyParser = require("body-parser");
 app.use(express.json());
@@ -18,19 +18,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/send-sms", (req, res) => {
-  const { recipient } = req.query;
+  const { recipient, name } = req.query;
   try {
     client.messages
       .create({
-        body: "Hello Konnect Users, This is a test Message.",
+        body: `Hello ${name} welcome! We are happy to have you onboard, Konnect helps you stay connected with your friends.`,
         messagingServiceSid: "MG77cab241bb6ecc8a9b9b3f5bde325d73",
         to: recipient,
       })
-      .then((message) =>{
+      .then((message) => {
         console.log(message);
-        console.log(" Phone Number:" + recipient)
+        console.log(" Phone Number:" + recipient);
         res.send(message);
-  })
+      })
       .done();
   } catch (error) {
     res.send(error);
