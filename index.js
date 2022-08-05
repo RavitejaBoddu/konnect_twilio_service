@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.get("/send-sms", (req, res) => {
   const { recipient, name } = req.query;
+  let response;
   try {
     client.messages
       .create({
@@ -29,9 +30,10 @@ app.get("/send-sms", (req, res) => {
       .then((message) => {
         console.log(message);
         console.log(" Phone Number:" + recipient);
-        res.send(message);
+        response = message;
       })
       .done();
+      res.send(response);
   } catch (error) {
     res.send(error);
   }
