@@ -75,7 +75,7 @@ app.post("/verify-otp", async (req, res) => {
 });
 
 app.post("/add-user", async (req, res) => {
-  let status, error;
+  let response;
   const { phoneNumber } = req.body;
   try {
     client.validationRequests
@@ -85,13 +85,12 @@ app.post("/add-user", async (req, res) => {
       })
       .then((validation_request) => {
         console.log(validation_request.friendlyName);
-        console.log(validation_request);
+        response = validation_request;
       });
   } catch (error) {
     console.log(error);
-    status = "Failure";
   }
-  res.json({ error, status });
+  res.send(response);
 });
 
 app.listen(port, () => console.log(`Server started on Port ${port}`));
